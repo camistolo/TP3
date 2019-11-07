@@ -76,6 +76,29 @@ El diagrama de uso del tiempo de la CPU es el siguiente:
 
 ![](C:\Users\camis\Desktop\Camila\Fiuba\SistemasEmbebidos\TP3\Imagenes\ex3_2.PNG)
 
+### Ejemplo 6
+
+En este ejemplo, se combinan tres tareas, una de ellas siendo periódica (tarea 3). Se configuran las tareas de la siguiente manera:
+
+![](C:\Users\camis\Desktop\Camila\Fiuba\SistemasEmbebidos\TP3\Imagenes\ex6_5.PNG)
+
+Las tareas continuas se configuran mediante la función **vContinuousProcessingTask**, que simplemente cambia el LED3 de estado y posee un delay con un for que permite que se observe el mensaje por el puerto serie, ya que si no, el tiempo no sería suficiente. Esta función se ve a continuación:
+
+![](C:\Users\camis\Desktop\Camila\Fiuba\SistemasEmbebidos\TP3\Imagenes\ex6_2.PNG)
+
+La función periódica se configura utilizando la función **vPeriodicTask**, que utiliza la función **vTaskDelayUntil**, entregándole el valor del tiempo en que se generó la misma señal. Esto se observa a continuación:
+
+![](C:\Users\camis\Desktop\Camila\Fiuba\SistemasEmbebidos\TP3\Imagenes\ex6_4.PNG)
+
+La función **vTaskDelayUntil** toma el primer parámetro que le entregan y le suma el segundo parámetro, para calcular el tiempo de delay correspondiente.
+
+![](C:\Users\camis\Desktop\Camila\Fiuba\SistemasEmbebidos\TP3\Imagenes\ex6_3.PNG)
+
+De esta forma, la tarea 3 se ejecuta cada 10 ms, mientras que las tareas 1 y 2 se ejecutan controladas por el kernel, siendo la 2 de mayor prioridad que la 1. El diagrama de tiempo de la CPU se observa a continuación:
+
+![](C:\Users\camis\Desktop\Camila\Fiuba\SistemasEmbebidos\TP3\Imagenes\ex6_6.PNG)
+
+
 ## Aplicación 1
 
 Todas las aplicaciones se encuentran en  [freertos_app.c](./freertos_examples_10_to_16/example/src).
@@ -86,7 +109,7 @@ En la siguiente aplicación se tiene el siguiente diagrama temporal:
 
 Se crean tres tareas, de las cuales la Tarea 1 es la periodida. A esta se le asigna a la mayor prioridad, mientras que las otras dos estan al mismo nivel. La Tarea 1 genera un interrupcion cada 500mS. En este interrupcion se da un semaforo binario, el cual desbloquea la Tarea 2. Esta agrega un valor a la cola que desbloquea la Tarea 3, la cual imprime por consola el valor.
 
-El reusltado por consola es el siguiente:
+El resultado por consola es el siguiente:
 
 ![](app1a.PNG) 
 
