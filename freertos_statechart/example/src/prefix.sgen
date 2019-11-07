@@ -1,0 +1,11 @@
+GeneratorModel for yakindu::c {
+
+	statechart prefix {
+
+		feature Outlet {
+			targetProject = "freertos_statechart"
+			targetFolder = "example/src/src-gen"
+			libraryTargetFolder = "example/src/src-gen"
+		}
+	}
+}
