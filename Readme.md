@@ -100,9 +100,9 @@ De esta forma, la tarea 3 se ejecuta cada 10 ms, mientras que las tareas 1 y 2 s
 
 ## Ejemplo 10 
 
+La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene mayor prioridad. Esta intentara leer la cola, y si esta esta vacia, la tarea pasará al estado BLOKED hasta que haya un dato en la cola, dejando ejecutar tareas de menor priordad. Luego el CPU se pasa a la tarea Sender2, donde carga un valor en la cola a traves de la función xQueueSendToBack(), por lo tanto la tarea Receiver pasa al estado READY, y como esta ultima tiene mayor prioridad se ejecuta hasta que vacia la cola y pasa al estado BLOCKED. Luego delega el CPU a la tarea Sender2 que cede a este mismo a la tarea Sender1 por medio de la función taskYIELD(). Una vez que la tarea Sender1 escribe en la cola se vuelve a repetir el proceso. 
 
-
-La Tarea Receiver tiene más prioridad que las dos Tareas Sender. Cuando arranca el programa, el CPU es asignado a la Tarea Receiver, la cual queda en estado BLOCKED en la espera de que haya un dato en la cola (xQueueReceive()). Luego corre la Tarea Sender2 y carga en la cola un valor con xQueueSendToBack() y llama a taskYIELD() para deelgar el uso del CPU. En este momento el kernel sabes que deja de estar vacia la cola y asigna el CPU a la Tarea Receiver, la cual imprime el valor por consola y vuelve a esperar un valor, el cual se llena por Tarea Sender 1.
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10.PNG)
 
 
 ## Aplicación 1
