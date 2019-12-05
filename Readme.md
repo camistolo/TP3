@@ -104,7 +104,7 @@ De esta forma, la tarea 3 se ejecuta cada 10 ms, mientras que las tareas 1 y 2 s
 En primer lugar se crean las tareas, las tareas encargadas de escribir datos en la cola y la tarea consumidora de datos.
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10_1.PNG)
 
-La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene mayor prioridad. Esta intentara leer la cola, y si esta esta vacia, la tarea pasará al estado BLOKED hasta que haya un dato en la cola, dejando ejecutar tareas de menor priordad. Luego el CPU se pasa a la tarea Sender2, donde carga un valor en la cola a traves de la función xQueueSendToBack(), por lo tanto la tarea Receiver pasa al estado READY, y como esta ultima tiene mayor prioridad se ejecuta hasta que vacia la cola y pasa al estado BLOCKED. Luego delega el CPU a la tarea Sender2 que cede a este mismo a la tarea Sender1 por medio de la función taskYIELD(). Una vez que la tarea Sender1 escribe en la cola se vuelve a repetir el proceso. 
+La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene mayor prioridad. Esta intentara leer la cola, y si esta esta vacia, la tarea pasará al estado BLOKED hasta que haya un dato en la cola, dejando ejecutar tareas de menor priordad. Luego el CPU se pasa a la tarea Sender2, donde carga un valor en la cola a traves de la función xQueueSendToBack(), por lo tanto la tarea Receiver pasa al estado READY, y como esta ultima tiene mayor prioridad, se ejecuta hasta que vacia la cola y pasa al estado BLOCKED. Luego delega el CPU a la tarea Sender2 que cede a este mismo a la tarea Sender1 por medio de la función taskYIELD(). Una vez que la tarea Sender1 escribe en la cola se vuelve a repetir el proceso. En la siguiente imagen se muestra el diagrama de tiempo del ejemplo y los valores que se imprimen por pantalla.
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10.PNG)
 
@@ -112,23 +112,45 @@ La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene ma
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10_2.PNG)
 
 
+## Ejemplo 14
+
+En este ejemplo se crearon dos tareas:
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_1)
+
+donde la primera se encarga de guardar enteros y la otra imprimir strings. La primera guarda 5 valores en una cola y luego genera una interrupción. 
+
+
+
 
 
 ## Aplicación 1
 
-Todas las aplicaciones se encuentran en  [freertos_app.c](./freertos_examples_10_to_16/example/src).
+El diagrama de esta aplicacion sera (sacado del enunciado):
 
-En la siguiente aplicación se tiene el siguiente diagrama temporal:
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/diagrama_app1.PNG)
 
-![](app1.PNG) 
+Se crearan 3 tareas. Una primera periodica con mayor prioridad que las otras 3, de periodo 500mS, que genera una interrupcion que da un semaforo binario, desbloqueando la tarea 2.
 
-Se crean tres tareas, de las cuales la Tarea 1 es la periodida. A esta se le asigna a la mayor prioridad, mientras que las otras dos estan al mismo nivel. La Tarea 1 genera un interrupcion cada 500mS. En este interrupcion se da un semaforo binario, el cual desbloquea la Tarea 2. Esta agrega un valor a la cola que desbloquea la Tarea 3, la cual imprime por consola el valor.
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK1_app1.PNG)
 
-El resultado por consola es el siguiente:
+La segunda que se sincroniza con la interrupcion mediante un semaforo, agrega valores a la cola, lo cual activa la tarea 3:
 
-![](https://github.com/camistolo/TP3/blob/master/Imagenes/app1a.PNG?raw=true) 
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK2_app1.PNG)
 
-APP2: Idem app1 intercambiando cola <-> semaforo.
+Y por ultimo una tercera que se sincroniza con la tarea 2 mediante una cola, imprime el resultado por pantalla:
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK3_app1.PNG)
+
+Ademas, se muestra el main en donde se puede ver como se crean las tareas. Se puede observar que para la tarea 1 se le pasa mayor prioridad.
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/main_app1.PNG)
+
+Corriendo el programa, se puede observar el siguiente resultado por consola:
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/resultado_app1.PNG)
+
+## Aplicación 2: Idem app1 intercambiando cola <-> semaforo.
 
 El diagrama temporal de esta aplicacion es el siguiente (del enunciado):
 
@@ -156,7 +178,7 @@ Ejecutado el codigo se obtuvo la siguiente respuesta:
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/resultado_app2.PNG)
 
-APP3: 3 tareas que comparten el uso del led, envian una secuencia de unos y ceros. Estas no deben mezclarse
+## Aplicación 3: 3 tareas que comparten el uso del led, envian una secuencia de unos y ceros. Estas no deben mezclarse
 
 El diagrama temporal sacado del enunciado debe ser el siguiente:
 
