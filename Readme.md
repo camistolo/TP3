@@ -184,7 +184,7 @@ Por ultimo, para la tarea 3, se tiene la misma que en la app1 pero sincronizando
 
 Se muestra tambien una captura del main. Es igual al de la app1. La diferencia de esta app con la primera esta en las funciones de la tareas en si:
 
-![]https://github.com/camistolo/TP3/blob/master/Imagenes/(main_app2.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/(main_app2.PNG)
 
 Ejecutado el codigo se obtuvo la siguiente respuesta:
 
