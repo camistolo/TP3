@@ -104,13 +104,6 @@ La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene ma
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10.PNG)
 
-## Ejemplo 15 
-
-
-
-
-
-Se tiene dos tareas que imprimen por consola un mensaje largo cada un tiempo aleatorio. En caso de no usar una proteccion del recurso, los mensajes por consola se verian partidos por la mitad, pisados. En este ejemplo se utiliza un Mutex, que hace que una tarea no pueda acceder a la UART hasta que la otra tarea lo haya liberado, permitiendo que dos tares puedan acceder de manera ordenada a un recurso unico. El resultado por consola es el siguiente:
 
 
 
