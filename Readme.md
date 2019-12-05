@@ -102,7 +102,8 @@ De esta forma, la tarea 3 se ejecuta cada 10 ms, mientras que las tareas 1 y 2 s
 
 
 En primer lugar se crean las tareas, las tareas encargadas de escribir datos en la cola y la tarea consumidora de datos.
-![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10_1)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10_1.PNG)
+
 La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene mayor prioridad. Esta intentara leer la cola, y si esta esta vacia, la tarea pasará al estado BLOKED hasta que haya un dato en la cola, dejando ejecutar tareas de menor priordad. Luego el CPU se pasa a la tarea Sender2, donde carga un valor en la cola a traves de la función xQueueSendToBack(), por lo tanto la tarea Receiver pasa al estado READY, y como esta ultima tiene mayor prioridad se ejecuta hasta que vacia la cola y pasa al estado BLOCKED. Luego delega el CPU a la tarea Sender2 que cede a este mismo a la tarea Sender1 por medio de la función taskYIELD(). Una vez que la tarea Sender1 escribe en la cola se vuelve a repetir el proceso. 
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10.PNG)
