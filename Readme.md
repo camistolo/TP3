@@ -116,9 +116,16 @@ La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene ma
 
 En este ejemplo se crearon dos tareas:
 
-![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_1)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_1.PNG)
 
-donde la primera se encarga de guardar enteros y la otra imprimir strings. La primera guarda 5 valores en una cola y luego genera una interrupción. 
+donde la primera se encarga de guardar enteros y la otra imprimir strings. La tarea **vIntegerGenerator** es una tarea periodica que se ejecuta cada 200 ms. Esta guarda 5 valores en una cola y luego genera una interrupción. En esta se interpretan los datos truncando cada valor y según el valor que de, se guardan las strings en el orden obtenido, en la cola correspondiente. Una vez llena esta cola, la tarea **vStringPrinter** imprime los valores por pantalla y se bloquea hasta que vuelva a suceder los mismo.
+
+Por pantalla se puede observar lo descripto anteriormente:
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_2.PNG)
+
+
+
 
 
 
