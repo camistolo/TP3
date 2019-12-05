@@ -125,48 +125,48 @@ APP2: Idem app1 intercambiando cola <-> semaforo.
 
 El diagrama temporal de esta aplicacion es el siguiente (del enunciado):
 
-![](diagrama_app2.PNG) 
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/diagrama_app2.PNG) 
 
 Se muestra las funciones para las tres tareas:
 
 Para la tarea 1, se tiene el mismo que en la app1, una tarea periodica de periodo 500mS:
 
-![](TASK1_app2.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK1_app2.PNG)
 
 Para la tarea 2, se tiene la misma que en la app1 pero ahora se sincroniza a traves de una cola, no de un semaforo:
 
-![](TASK2_app2.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK2_app2.PNG)
 
 Por ultimo, para la tarea 3, se tiene la misma que en la app1 pero sincronizandola mediante un semaforo:
 
-![](TASK3_app2.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK3_app2.PNG)
 
 Se muestra tambien una captura del main. Es igual al de la app1. La diferencia de esta app con la primera esta en las funciones de la tareas en si:
 
-![](main_app2.PNG)
+![]https://github.com/camistolo/TP3/blob/master/Imagenes/(main_app2.PNG)
 
 Ejecutado el codigo se obtuvo la siguiente respuesta:
 
-![](resultado_app2.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/resultado_app2.PNG)
 
 APP3: 3 tareas que comparten el uso del led, envian una secuencia de unos y ceros. Estas no deben mezclarse
 
 El diagrama temporal sacado del enunciado debe ser el siguiente:
 
-![](diagrama_app3.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/diagrama_app3.PNG)
 
 En primer lugar, se muestra la funcion encargada de crear las tareas:
 
-![](TASK_app3.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/TASK_app3.PNG)
 
 En esta se puede ver que al entrar a la funcion, la tarea toma el mutex al comenzar para bloquear que las otras tareas que quieran usar el mismo recurso no se superpongan, y lo libera una vez que termino lo que tiene que hacer. Luego, se imprime el nombre de la tarea y se prende el led. Se espera un tiempo de 500mS, se apaga el led y se esperan otros 500mS. Finalizado esto, entrega el Mutex.
 
 A continuacion se muetra el main:
 
-![](main_app3.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/main_app3.PNG)
 
 En este se puede ver que al comenzar se crea el mutex que se utilizara como proteccion para las tareas que esten usando los recursos. Luego se crean las tres tareas usando la misma funcion con la misma prioridad asi tienen la misma chance de usar los recursos (LED y UART), pero se les pasa distinto nombre como parametro. Por ultimo se llama al scheduler.
 
 Al correr la aplicacion, se observa el siguiente resultado en consola:
 
-![](resultado_app3.PNG)
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/resultado_app3.PNG)
