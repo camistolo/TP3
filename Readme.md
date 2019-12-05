@@ -109,6 +109,9 @@ La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene ma
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10.PNG)
 
 
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10_2.PNG)
+
+
 
 
 ## Aplicación 1
