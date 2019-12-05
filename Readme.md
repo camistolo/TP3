@@ -104,7 +104,7 @@ De esta forma, la tarea 3 se ejecuta cada 10 ms, mientras que las tareas 1 y 2 s
 En primer lugar se crean las tareas, las tareas encargadas de escribir datos en la cola y la tarea consumidora de datos.
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10_1.PNG)
 
-La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene mayor prioridad. Esta intentara leer la cola, y si esta esta vacia, la tarea pasará al estado BLOKED hasta que haya un dato en la cola, dejando ejecutar tareas de menor priordad. Luego el CPU se pasa a la tarea Sender2, donde carga un valor en la cola a traves de la función xQueueSendToBack(), por lo tanto la tarea Receiver pasa al estado READY, y como esta ultima tiene mayor prioridad, se ejecuta hasta que vacia la cola y pasa al estado BLOCKED. Luego delega el CPU a la tarea Sender2 que cede a este mismo a la tarea Sender1 por medio de la función taskYIELD(). Una vez que la tarea Sender1 escribe en la cola se vuelve a repetir el proceso. En la siguiente imagen se muestra el diagrama de tiempo del ejemplo y los valores que se imprimen por pantalla.
+La tarea Receiver es la que se ejecuta en primer lugar ya que es la que tiene mayor prioridad. Esta intentara leer la cola, y si esta esta vacia, la tarea pasará al estado BLOKED hasta que haya un dato en la cola, dejando ejecutar tareas de menor priordad. Luego el CPU se pasa a la tarea Sender2, donde carga un valor en la cola a traves de la función **xQueueSendToBack()**, por lo tanto la tarea Receiver pasa al estado READY, y como esta ultima tiene mayor prioridad, se ejecuta hasta que vacia la cola y pasa al estado BLOCKED. Luego delega el CPU a la tarea Sender2 que cede a este mismo a la tarea Sender1 por medio de la función **taskYIELD()**. Una vez que la tarea Sender1 escribe en la cola se vuelve a repetir el proceso. En la siguiente imagen se muestra el diagrama de tiempo del ejemplo y los valores que se imprimen por pantalla.
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej10.PNG)
 
@@ -118,14 +118,19 @@ En este ejemplo se crearon dos tareas:
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_1.PNG)
 
-donde la primera se encarga de guardar enteros y la otra imprimir strings. La tarea **vIntegerGenerator** es una tarea periodica que se ejecuta cada 200 ms a traves de la utilización de la tarea que se mencionó en los ejemplos anteriores **vTaskDelayUntil**. **vIntegerGenerator** guarda 5 valores en una cola y luego genera una interrupción. En esta se interpretan los datos truncando cada valor y según el valor que de, se guardan las strings en el orden obtenido, en la cola correspondiente. Una vez llena esta cola, la tarea **vStringPrinter** imprime los valores por pantalla y se bloquea hasta que vuelva a suceder los mismo.
+donde la primera se encarga de guardar enteros y la otra imprimir strings. La tarea **vIntegerGenerator** es una tarea periodica que se ejecuta cada 200 ms a traves de la utilización de la tarea que se mencionó en los ejemplos anteriores **vTaskDelayUntil**.
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_4.PNG)
+
+**vIntegerGenerator** guarda 5 valores en una cola y luego genera una interrupción. En esta se interpretan los datos truncando cada valor y según el valor que de, se guardan las strings en el orden obtenido, en la cola correspondiente. Una vez llena esta cola, la tarea **vStringPrinter** imprime los valores por pantalla y se bloquea hasta que vuelva a suceder los mismo.
 
 Por pantalla se puede observar lo descripto anteriormente:
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_2.PNG)
 
+El diagrama de tiempo que correspondeinte para este ejemplo es el siguiente:
 
-
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/ej14_3.PNG)
 
 
 
