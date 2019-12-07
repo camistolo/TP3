@@ -211,3 +211,7 @@ En este se puede ver que al comenzar se crea el mutex que se utilizara como prot
 Al correr la aplicacion, se observa el siguiente resultado en consola:
 
 ![](https://github.com/camistolo/TP3/blob/master/Imagenes/resultado_app3.PNG)
+
+
+
+![](https://github.com/camistolo/TP3/blob/master/Imagenes/hoja.jpeg)
